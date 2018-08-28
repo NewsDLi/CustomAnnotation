@@ -9,14 +9,14 @@ import cn.util.PackageUtil;
 public class DemoTest{
 
     public static void main(String[] args) throws SQLException {
+        // 要建的表的注释所在的包名
         String packages = "cn.model";
-        List<String> getClassNames = PackageUtil.GetClassNames(packages);
+        List<String> getClassNames = PackageUtil.GetClassNames("src", packages);
         // 循环创建数据库表
         for (String className : getClassNames) {
+            System.out.println(className);
             if (CreatTable.CrateTable(className)) {
                 System.out.println("建表成功");
-            }else{
-                System.out.println("失败");
             }
         }
     }

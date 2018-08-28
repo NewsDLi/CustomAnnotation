@@ -4,11 +4,23 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.StringUtils;
+
 public class PackageUtil{
 
     // 加载包下面的所有类，并把类的全限定名返回
-    public static List<String> GetClassNames(String packages){
-        File file = new File(System.getProperty("user.dir") + "//src//" + packages.replace(".", "//"));
+    /**
+     * 
+     * @param prefix 前缀 倘若使用SpringBoot项目,则需要加上前缀src.mian.java,普通Java项目需要加src
+     * @param packages 包名
+     * @return
+     */
+    public static List<String> GetClassNames(String prefix, String packages){
+        String aaa = !StringUtils.isNullOrEmpty(prefix) ? ("//" + prefix.replace(".", "//") + "//") : "";
+        System.out.println(System.getProperty("user.dir")+ aaa + packages.replace(".", "//"));
+        File file = new File(System.getProperty("user.dir") 
+                        + ((!StringUtils.isNullOrEmpty(prefix)) ? ("//" + prefix.replace(".", "//") + "//") : "//") 
+                        + packages.replace(".", "//"));
         List<String> classNames = new ArrayList<>();
         if (file.exists()){
             String[] list = file.list();
