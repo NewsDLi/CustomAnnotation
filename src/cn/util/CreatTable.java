@@ -55,16 +55,12 @@ public class CreatTable{
                             sql.append(" NOT NULL");
                         }
                         
-                        
-                        if (i < declaredFields.length-1) {
-                            sql.append(",\r\n");
-                        } else {
-                            sql.append("\r\n");
-                        }
+                        sql.append(",\r\n");
                         
                     }
                 }
-                
+                // 去除拼装SQL语句的最后一个“,”
+                sql.deleteCharAt(sql.lastIndexOf(","));
                 sql.append(")charset=utf8;");
                 // 获取数据库连接
                 Connection connection = JdbcUtils.getConnection();
