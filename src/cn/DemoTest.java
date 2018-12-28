@@ -1,6 +1,5 @@
 package cn;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import cn.util.CreatTable;
@@ -8,10 +7,10 @@ import cn.util.PackageUtil;
 
 public class DemoTest{
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         // 要建的表的注释所在的包名
         String packages = "cn.model";
-        List<String> getClassNames = PackageUtil.GetClassNames("src", packages);
+        List<String> getClassNames = PackageUtil.GetClassNames(packages);
         // 循环创建数据库表
         for (String className : getClassNames) {
             System.out.println(className);
@@ -20,4 +19,5 @@ public class DemoTest{
             }
         }
     }
+    
 }
